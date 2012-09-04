@@ -119,7 +119,7 @@ Class fieldStatus extends Field
 			foreach($results as $result)
 			{
 				$row = new XMLElement('tr');
-				$row->appendChild(new XMLElement('td', DateTimeObj::get('d F Y', $result['date'])));
+                $row->appendChild(new XMLElement('td', DateTimeObj::get('d.m.Y H:i:s', $result['date'])));
 				$row->appendChild(new XMLElement('td', $result['status']));
 				if($this->get('valid_until') == 'yes')
 				{
@@ -180,7 +180,7 @@ Class fieldStatus extends Field
 		if($data != '0')
 		{
 			// Store new status:
-			$dateNow = date('Y-m-d');
+            $dateNow = date('Y-m-d H:i:s');
 			if(isset($_POST['fields'][$this->get('element_name').'-until']))
 			{
 				$dateUntil = $_POST['fields'][$this->get('element_name').'-until'];
@@ -193,7 +193,7 @@ Class fieldStatus extends Field
 			
 			if($dateUntil != __('YYYY-MM-DD') && !empty($dateUntil))
 			{
-				$dateUntil = '\''.DateTimeObj::get('Y-m-d', strtotime($dateUntil)).'\'';
+                $dateUntil = '\''.DateTimeObj::get('Y-m-d H:i:s', strtotime($dateUntil)).'\'';
 			} else {
 				$dateUntil = 'NULL';
 			}
